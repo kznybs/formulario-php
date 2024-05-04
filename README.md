@@ -32,3 +32,4 @@ CREATE TABLE `usuarios` (
   `senha` varchar(16) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 -----------------------------------------------------------------
+
