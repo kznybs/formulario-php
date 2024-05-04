@@ -16,7 +16,7 @@ if (isset($_POST['email']) || isset($_POST['senha'])) {
         $senha = $mysqli->real_escape_string($_POST['senha']);
 
         // Consulta SQL para verificar se existe um usuário com o email e senha fornecidos
-        $sql_code = "SELECT * FROM adm WHERE email = '$email' AND senha = '$senha'";
+        $sql_code = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
         $sql_query = $mysqli->query($sql_code) or die("Falha na execução do código SQL: " . $mysqli->error);
 
         // Obter a quantidade de linhas retornadas pela consulta
