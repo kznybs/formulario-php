@@ -6,5 +6,5 @@ Dentro do seu phpMyadmin importe o arquivo ( principal.sql ).
 -------------------------------------------------------------
 O index principal faz login somente com os dados criado dentro do phpMyadmin.
 -----------------------------------------------------------------------------
-Defeito na pagina edit.php, na url pode alterar outros id.
+(Defeito na pagina edit.php, na url pode alterar outros id) Corrigido com javascript..
 ----------------------------------------------------------
