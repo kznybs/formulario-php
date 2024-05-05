@@ -1,37 +1,39 @@
 <?php
-    include_once('config.php');
-    include('protecct.php');
-    if(!empty($_GET['id']))
-    {
-        $id = $_GET['id'];
-        $sqlSelect = "SELECT * FROM usuario WHERE id=$id";
-        $result = $conexao->query($sqlSelect);
-        if($result->num_rows > 0)
-        {
-            while($user_data = mysqli_fetch_assoc($result))
-            {
-                $username = $user_data['username'];
-                $cargo = $user_data['cargo'];
-                $email = $user_data['email'];
-                $telefone = $user_data['telefone'];
-                $sexo = $user_data['sexo'];
-                $data_nasc = $user_data['data_nasc'];
-                $banco = $user_data['banco'];
-                $chave = $user_data['chave'];
-                $endereco = $user_data['endereco'];
-                $password = $user_data['password'];
-                $created_at = $user_data['created_at'];
-            }
-        }
-        else
-        {
-            header('Location: view.php');
-        }
-    }
-    else
-    {
+// Configuração e proteção
+include_once('config.php');
+include('protecct.php');
+
+// Verificar se o ID do usuário foi passado na URL
+if (isset($_GET['id'])) {
+    $id = $_GET['id']; // Obter o ID do parâmetro 'id' na URL
+
+    // Consultar o banco de dados para verificar se o ID é válido
+    $sqlSelect = "SELECT * FROM usuario WHERE id = $id";
+    $result = $conexao->query($sqlSelect);
+
+    if ($result->num_rows > 0) {
+        // Se encontrou o usuário, extrair seus dados
+        $user_data = mysqli_fetch_assoc($result);
+        $username = $user_data['username'];
+        $cargo = $user_data['cargo'];
+        $email = $user_data['email'];
+        $telefone = $user_data['telefone'];
+        $sexo = $user_data['sexo'];
+        $data_nasc = $user_data['data_nasc'];
+        $banco = $user_data['banco'];
+        $chave = $user_data['chave'];
+        $endereco = $user_data['endereco'];
+        $password = $user_data['password'];
+    } else {
+        // Se o usuário não foi encontrado, redirecionar para uma página segura
         header('Location: view.php');
+        exit; // Garante que o script pare após o redirecionamento
     }
+} else {
+    // Se não houver um ID, redirecionar para uma página segura
+    header('Location: view.php');
+    exit; // Garante que o script pare após o redirecionamento
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,6 +42,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Dados</title>
+    <script>
+    // Código JavaScript para remover o parâmetro 'id' da URL após o carregamento da página
+    window.addEventListener("load", function() {
+        var url = new URL(window.location.href); // Obter a URL atual
+        url.searchParams.delete("id"); // Remover o parâmetro 'id'
+        window.history.replaceState({}, document.title, url.toString()); // Atualizar a URL sem recarregar a página
+    });
+    </script>
     <style>
         body{
             font-family: Arial, Helvetica, sans-serif;
