@@ -35,6 +35,7 @@ if (isset($_GET['id'])) {
     exit; // Garante que o script pare após o redirecionamento
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
